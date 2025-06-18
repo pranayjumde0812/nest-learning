@@ -1,13 +1,18 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateAppDto, CreateAppDtoType } from './dto/create-app.dto';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { AppService } from './app.service';
 
 @ApiTags('/App')
 @Controller('app')
 export class AppController {
+  private readonly appService: AppService;
   @Get()
   getHello(): string {
-    return 'Hello, World!';
+    // return 'Hello, World!';
+
+    const result = this.appService.getHello();
+    return result;
   }
 
   @Post()
